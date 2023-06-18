@@ -38,6 +38,7 @@ header button{
 
     border: 2px solid white;
     border-radius: 8px;
+    transition: 0.3s;
 
 }
 header button:hover{
@@ -331,3 +332,10 @@ main{
         .dragging {
             background-color: #dbeafd;
           }
+
+@media screen and (max-width: 780px) {
+    header > div{
+        transform: translateX(0);
+        left: 16px;
+    }
+}
