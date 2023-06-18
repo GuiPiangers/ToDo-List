@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+    <header>
+        <div id="area-central">
+            <span class="material-symbols-outlined">
+                search
+            </span>
+            <input id="pesquisar" type="text" placeholder="Pesquisar tarefa">
+        </div>
+        <button id="bt-nova-tarefa">Criar Tarefa</button>
+    </header>
+
+    <main>
+        <section id="lista-de-tarefas">
+            <div>
+                <label for="oredenarPor">Ordenar por</label>
+                <select name="oredenarPor" id="oredenarPor">
+                    <option value="data">Data e Hora</option>
+                    <option value="prioridade">Prioridade</option>
+                </select>
+            </div>
+
+            <div>
+                <div class="cabecalho-lista">
+                    <h2>Atrasadas</h2>
+                    <span class="material-symbols-rounded arrow">
+                        arrow_drop_up
+                    </span>
+                </div>
+                <div id="div-anteriores" class="body-lista"></div>
+            </div>
+
+            <div>
+                <div class="cabecalho-lista">
+                    <h2>Hoje</h2>
+                    <span class="material-symbols-rounded arrow">
+                        arrow_drop_up
+                    </span>
+                </div>
+                <div id="div-hoje" class="body-lista"></div>
+            </div>
+            
+            <div id="nenhum-item">
+                <img src="arquivos/Prancheta 1.svg" alt="">
+                <p>Você não possui nenhuma tarefa hoje</p>
+                <p id="p-criar-tarefa">Criar uma tarefa</p>
+            </div>
+
+            <div>
+                <div class="cabecalho-lista">
+                    <h2>Futuras</h2>
+                    <span class="material-symbols-rounded arrow">
+                        arrow_drop_up
+                    </span>
+                </div>
+                <div id="div-futuro" class="body-lista"></div>
+            </div>
+
+            <div>
+                <div class="cabecalho-lista">
+                    <h2>Concluído Hoje</h2>
+                    <span class="material-symbols-rounded arrow">
+                        arrow_drop_up
+                    </span>
+                </div>
+                <div id="div-concluidos-hoje" class="body-lista"></div>
+            </div>
+        </section> 
+    </main>
+
+    <div class="popup-wrapper">
+        <div class="popup">
+            <h2 id="popup-titulo">Nova Tarefa</h2>
+            <input type="hidden" id="id-input">
+            <span class="x-close-wrapper">X</span>
+            <input type="text" placeholder="Nome da tarefa" name="input-tarefa-nome" id="input-tarefa-nome" class="popup-input">
+            <input type="date" name="input-data" id="input-data" class="popup-input">
+            <input type="time" name="input-time" id="input-time" class="popup-input">
+            <select id="select-prioridade">
+                <option value="3">Baixa</option>
+                <option value="2">Media</option>
+                <option value="1">Alta</option>
+            </select>
+
+            <div>
+                <button id="bt-criar-tarefa" class="bt-tarefa">Criar</button>
+                <button id="bt-criar-editar" class="bt-tarefa">Salvar</button>
+                <button class="bt-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

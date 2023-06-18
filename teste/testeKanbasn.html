@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .kanban{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100vh;
+            
+        }
+        .kanban-column{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            width: 200px;
+            height: 500px;
+            background-color: chocolate;
+            border-radius: 15px;
+        }
+        .kanban-column__item{
+            width:100%;
+            height: 80px;
+            background-color: azure;
+            text-align: center;
+            line-height: 80px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="kanban">
+        <div class="kanban-column">
+          <div class="kanban-column__item" draggable="true">Card 01</div>
+          <div class="kanban-column__item" draggable="true">Card 02</div>
+        </div>
+        <div class="kanban-column">
+          <div class="kanban-column__item" draggable="true">Card 03</div>
+          <div class="kanban-column__item" draggable="true">Card 04</div>
+        </div>
+        <div class="kanban-column">
+          <div class="kanban-column__item" draggable="true">Card 05</div>
+          <div class="kanban-column__item" draggable="true">Card 06</div>
+        </div>
+      </div>
+
+    <script>
+        const columns = document.querySelectorAll('.kanban-column')
+        document.addEventListener("dragstart", (e) =>{
+            e.target.classList.add("dragging")
+        })
+        document.addEventListener("dragend", (e) =>{
+            e.target.classList.remove("dragging")
+        })
+
+        columns.forEach((item) =>{
+            item.addEventListener("dragover", (e) =>{
+                const draggin = document.querySelector('.dragging')
+                const applyAfter = getNewPosition(item, e.clientY)
+
+                if(applyAfter){
+                    applyAfter.insertAdjacentElement("afterend", draggin)
+                }
+                else{
+                    item.prepend(draggin)
+                }
+            })
+        })
+
+        function getNewPosition(column, positionY){
+            const cards = column.querySelectorAll(".kanban-column__item:not(.dragging)")
+            let result
+
+            for(let referCard of cards){
+                const box = referCard.getBoundingClientRect()
+                const boxCenterY = box.y + box.height / 2
+
+                if (positionY >= boxCenterY) result = referCard
+            }
+
+            return result
+        }
+    </script>
+</body>
+</html>
